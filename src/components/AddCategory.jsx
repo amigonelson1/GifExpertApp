@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AddCategory({ /*setCategories*/ onNewCategory }) {
+export function AddCategory({ /*setCategories*/ onNewCategory }) {
 
     const [inputValue, setInputValue] = useState('');
 
@@ -25,11 +25,14 @@ function AddCategory({ /*setCategories*/ onNewCategory }) {
             <button type="submit">
                 Agregar
             </button>
-            <button type="reset" onClick={e => setInputValue('')}>
-                Limpiar
-            </button>
+            {
+                inputValue && (
+                    <button type="reset" onClick={e => setInputValue('')}>
+                        Limpiar
+                    </button>
+                )
+            }
+
         </form>
     )
-}
-
-export default AddCategory
+};
