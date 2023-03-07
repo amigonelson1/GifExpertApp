@@ -19,7 +19,7 @@ export function AddCategory({ /*setCategories*/ onNewCategory }) {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} aria-label='form'>
             <input type="text" placeholder="Ingrese la categoría" value={inputValue}
                 onChange={onInputChange}>
             </input>
