@@ -1,0 +1,44 @@
+Pasos para hacer las configuraciones de jest para testear nuestra GifExpertApp
+
+1. Instalamos:
+yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react 
+yarn add --dev @testing-library/react @types/jest jest-environment-jsdom
+
+2. Opcional: Si usamos Fetch API en el proyecto:
+yarn add --dev whatwg-fetch
+
+3. Actualizar los scripts del package.json
+"scripts: {
+  ...
+  "test": "jest --watchAll"
+
+Los siguientes tres archivos se crean en la carpeta raiz;
+
+4. Crear archivo 'babel.config.js' y dentro la siguiente configuracion:
+module.exports = {
+    presets: [
+        [ '@babel/preset-env', { targets: { esmodules: true } } ],
+        [ '@babel/preset-react', { runtime: 'automatic' } ],
+    ],
+};
+
+5. Opcional, pero eventualmente necesario, crear archivos 'Jest.config.js' y 'jest.setup.js':
+
+dentro de 'jest.config.js':
+
+module.exports = {
+    testEnvironment: 'jest-environment-jsdom',
+    setupFiles: ['./jest.setup.js']
+}
+
+dentro de 'jest.setup.js':
+
+// En caso de necesitar la implementación del FetchAPI
+import 'whatwg-fetch'; // <-- yarn add whatwg-fetch
+
+Creamos la carpeta tests donde crearemos las copias de los componentes para testearlos
+
+En caso de ver el error:
+"You appear to be using a native ECMAScript module configuration file, which is only supported when running Babel asynchronously."
+-->
+Cambiar extensión de los archivos jest.config.js y babel.config.js a .cjs
